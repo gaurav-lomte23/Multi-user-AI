@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+// App.jsx
+const socket = io("https://multi-user-ai-1.onrender.com");
 
 export default function App() {
   const [name, setName] = useState("");

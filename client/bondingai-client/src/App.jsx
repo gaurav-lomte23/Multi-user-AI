@@ -79,6 +79,7 @@ export default function App() {
       </div>
     );
 
+
   return (
     <div className="flex h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       {/* Sidebar */}
@@ -86,6 +87,7 @@ export default function App() {
         <h2 className="text-lg font-bold mb-6 text-white">👥 Active Users</h2>
         <ul className="space-y-4">
           {users.map((u, i) => (
+            
             <li
               key={i}
               className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/20 transition"
@@ -112,7 +114,7 @@ export default function App() {
           {messages.map((msg, i) => {
             const isOwn = msg.user === name;
             const isAI = msg.user === "AI";
-
+/* Messages */
             return (
               <div
                 key={i}

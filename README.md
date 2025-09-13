@@ -124,8 +124,8 @@ client/bondingai-client/
 For collaboration, queries, or support:
 
 * **Founder:** Gaurav Lomte
-* **Email:** [gaurav@example.com](mailto:gaurav@example.com)
-* **LinkedIn:** [linkedin.com/in/gaurav-lomte](https://www.linkedin.com/in/gaurav-lomte)
+* **Email:** [gaurav@example.com](mailto:gauravlomte23@gmail.com)
+* **LinkedIn:** [linkedin.com/in/gaurav-lomte](https://www.linkedin.com/in/gaurav-lomte-ab881321a/)
 
 ---
 

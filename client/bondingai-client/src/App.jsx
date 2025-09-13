@@ -80,29 +80,41 @@ export default function App() {
       </div>
     );
 
-
+  // Chat UI
   return (
     <div className="flex h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       {/* Sidebar */}
       <div className="w-1/4 backdrop-blur-lg bg-white/10 p-6 border-r border-white/20 shadow-xl">
         <h2 className="text-lg font-bold mb-6 text-white">👥 Active Users</h2>
-        <ul className="space-y-4">
+        <ul className="space-y-4 list-disc list-inside">
           {users.map((u, i) => (
-            
             <li
               key={i}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/20 transition"
+              className="flex justify-between items-center gap-3 p-2 rounded-lg hover:bg-white/20 transition"
             >
-              <div
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: u.color }}
-              ></div>
-              <span
-                className="font-semibold"
-                style={{ color: u.color || "#fff" }}
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: u.color }}
+                ></div>
+                <span
+                  className="font-semibold"
+                  style={{ color: u.color || "#fff" }}
+                >
+                  {u.name}
+                </span>
+              </div>
+              <button
+                className="px-2 py-1 bg-red-500 text-white rounded-lg text-xs hover:bg-red-600 transition"
+                onClick={() => {
+                  // Remove user from list
+                  setUsers(users.filter((user) => user.name !== u.name));
+                  // Optional: remove messages of that user
+                  setMessages(messages.filter((msg) => msg.user !== u.name));
+                }}
               >
-                {u.name}
-              </span>
+                Remove
+              </button>
             </li>
           ))}
         </ul>
@@ -110,12 +122,23 @@ export default function App() {
 
       {/* Chat Section */}
       <div className="flex-1 flex flex-col">
+        {/* Header with New Chat Button */}
+        <div className="flex justify-between items-center p-4 border-b border-white/20 bg-white/10 backdrop-blur-lg">
+          <h2 className="text-white font-bold">💬 Chat</h2>
+          <button
+            className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold transition transform hover:scale-105"
+            onClick={() => setMessages([])}
+          >
+            Start New Chat
+          </button>
+        </div>
+
         {/* Messages */}
         <div className="flex-1 p-6 overflow-y-auto space-y-4">
           {messages.map((msg, i) => {
             const isOwn = msg.user === name;
             const isAI = msg.user === "AI";
-/* Messages */
+
             return (
               <div
                 key={i}
@@ -130,21 +153,13 @@ export default function App() {
                       : "bg-white/30 text-white"
                   }`}
                 >
-                   <span
-          className="font-extrabold text-sm mb-2 block tracking-wide drop-shadow-md"
-          style={{
-            color: isAI ? "#f08e8eff" : msg.color || "#ffeb3b", // fallback yellow if no color
-            textShadow: "0 0 8px rgba(255,255,255,0.6)",
-          }}
-        >
-           {/* Highlighted Username */}
-        <span
-          className="font-extrabold text-sm mb-2 block tracking-wide drop-shadow-md"
-          style={{
-            color: "#6db976ff", // always white text inside bubble
-            textShadow: "0 0 8px rgba(0,0,0,0.6)",
-          }}
-        ></span>
+                  <span
+                    className="font-extrabold text-sm mb-2 block tracking-wide drop-shadow-md"
+                    style={{
+                      color: isAI ? "#f08e8eff" : msg.color || "#ffeb3b",
+                      textShadow: "0 0 8px rgba(255,255,255,0.6)",
+                    }}
+                  >
                     {msg.user}
                   </span>
                   {msg.text}
